@@ -3,7 +3,6 @@ import { galleryItems } from './gallery-items.js';
 
 const galleryList = document.querySelector('.gallery');
 
-
 const markupGallery = galleryItems.map((galleryItem) => `<li class="gallery__item">
   <a class="gallery__link" href="large-image.jpg">
     <img
@@ -15,9 +14,7 @@ const markupGallery = galleryItems.map((galleryItem) => `<li class="gallery__ite
   </a>
 </li>`).join('');
 
-
 galleryList.insertAdjacentHTML("afterbegin", markupGallery);
-
 
 const galeryList = document.addEventListener('click', onTargetClickGalllery);
 
@@ -32,7 +29,12 @@ function onTargetClickGalllery(event) {
     <img src="${linkLargeImage}" width="800" height="600">
     `)
 
-    instance.show()
-}
+    instance.show();
+
+    galleryList.addEventListener('keydown', event => { 
+        if (event.code === 'Escape') 
+            instance.close()
+        })
+};
 
 console.log(galleryItems);
